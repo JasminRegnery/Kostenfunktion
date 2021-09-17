@@ -12,6 +12,9 @@
 			var vFixkosten;
 			var vStart = 1000;
 			var vMenge; //Produktionsmengen
+			
+			var vBEP; //Break-Even-Point
+			var vGewinnschwelle;
 			var vAusgabe = "";
 			
 			vk = parseFloat(document.getElementById("idk").value);
@@ -36,7 +39,7 @@
 				vAusgabe = vAusgabe + "<td>" + vE.toFixed(2) + " €</td>";
 					
 					if (vG < 0) {
-						vAusgabe = vAusgabe + "<td style=color:red>" + vG + " €</td>";
+						vAusgabe = vAusgabe + "<td style=color:red>" + vG.toFixed(2) + " €</td>";
 						vAusgabe = vAusgabe + "<td>Verlust</td></tr>";
 					} else {
 						vAusgabe = vAusgabe + "<td>" + vG.toFixed(2) + " €</td>";
@@ -47,6 +50,12 @@
 			}
 
 			vAusgabe = vAusgabe + "</table>";
+			
+			vBEP = vFixkosten /(vp - vk);
+			vAusgabe = vAusgabe + "<br>Break-Even-Point: " + vBEP + " Stück<br>";
+			
+			vGewinnschwelle = vBEP * vp;
+			vAusgabe = vAusgabe + "Gewinnschwelle: " + vGewinnschwelle.toFixed(2) + " €";
 			
 			document.getElementById("idAusgabe").innerHTML = vAusgabe;
 		}
